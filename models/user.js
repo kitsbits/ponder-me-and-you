@@ -25,7 +25,15 @@ const userSchema = new Schema({
     admin: {
         type: Boolean,
         default: false
-    }
+    },
+    favorites: [{
+        type: Schema.Types.ObjectId,
+        ref: "Meme"
+    }],
+    purchases: [{
+        type: Schema.Types.ObjectId,
+        ref: "Meme"
+    }]
 });
 
 // presave hook to hash password before saving to DB
