@@ -2,6 +2,7 @@ const express = require("express");
 const addMeme = express.Router();
 const Meme = require("../models/meme");
 
+// format pictureUrl so it's viewed, not downloaded from Dropbox
 const _formatUrl = (url) => {
     let shareUrl = url.substring(0, url.indexOf("?") + 1);
     return shareUrl += "raw=1";
