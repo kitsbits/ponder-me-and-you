@@ -1,6 +1,8 @@
 import React from "react";
-import Component from "./Component";
 import axios from "axios";
+import glamorous from "glamorous";
+import { mediaQueries } from "../../styles/global";
+import Component from "./Component";
 
 export default class LandingContainer extends React.Component {
     constructor() {
@@ -38,9 +40,22 @@ export default class LandingContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state.memes);
+        ///////// STYLES \\\\\\\\\\
+        const Container = glamorous.div({
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: "30%",
+            marginTop: "200px",
+            [mediaQueries.medium]: {
+                margin: "200px auto auto auto",
+            }
+        });
+        ////////////////////////////////
+
         return (
-            this.mapMemes()
+            <Container>
+                {this.mapMemes()}
+            </Container>
         )
     }
 }

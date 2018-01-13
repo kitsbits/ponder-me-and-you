@@ -1,19 +1,17 @@
 import React from "react";
 import glamorous from "glamorous";
+import { mediaQueries, colors } from "../styles/global";
 
 export default function Navbar() {
     ///////// STYLES \\\\\\\\\\
-    const mediaQueries = {
-        small: "@media screen and (max-width: 414px)",
-        medium: "@media screen and (max-width: 768px)",
-    }
     const Container = glamorous.div({
+        position: "fixed",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
         flexWrap: "wrap",
         height: "75px",
-        backgroundColor: "#ECFF6A",
+        backgroundColor: colors.green,
         width: "100%",
         margin: "0 auto 100px auto",
         transition: "all 0.2s ease-in-out",
@@ -45,7 +43,7 @@ export default function Navbar() {
     });
 
     const NavLink = glamorous.a({
-        color: "#24251D",
+        color: colors.grey,
         margin: "auto 10px",
         [mediaQueries.medium]: {
             margin: "auto 50px",
