@@ -1,9 +1,10 @@
 import React from "react";
+import AddMeme from "./addToMemes/Container";
 
 export default function App() {
     return(
         <div>
-            <h1>hi</h1>
+            <AddMeme />
         </div>
     )
 }

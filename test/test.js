@@ -17,8 +17,8 @@ let urls = {
 };
 
 describe("#_formatUrl", () => {
-    it("Should remove 'dl=0' param and replace with 'raw=1'", () => {
-        assert.equal(_formatUrl(urls.one), "https://www.dropbox.com/s/ubs439m91ubcxhe/be-light.png?raw=1")
-        assert.equal(_formatUrl(urls.two), "https://www.dropbox.com/s/olobd3m0ws718tr/talk-later.png?raw=1")
+    it("Should remove url param(s) and replace with 'raw=1'", () => {
+        assert.equal(_formatUrl(urls.one), "https://www.dropbox.com/s/ubs439m91ubcxhe/be-light.png?raw=1");
+        assert.equal(_formatUrl(urls.two), "https://www.dropbox.com/s/olobd3m0ws718tr/talk-later.png?raw=1");
     });
 });
