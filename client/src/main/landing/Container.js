@@ -51,7 +51,7 @@ export default class LandingContainer extends React.Component {
             marginLeft: "33%",
             marginTop: "200px",
             [mediaQueries.medium]: {
-                margin: "200px auto auto auto",
+                margin: "300px auto auto auto",
             }
         });
         ////////////////////////////////

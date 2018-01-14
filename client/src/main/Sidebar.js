@@ -12,7 +12,10 @@ export default function Sidebar() {
         justifyContent: "space-around",
         alignItems: "center",
         [mediaQueries.medium]: {
+            position: "absolute",
             flexDirection: "row",
+            left: "50%",
+            transform: "translateX(-55%)",
         }
     });
 
@@ -32,6 +35,8 @@ export default function Sidebar() {
         },
         [mediaQueries.medium]: {
             marginRight: "10px",
+            width: "110px",
+            height: "55px",
         }
     });
 

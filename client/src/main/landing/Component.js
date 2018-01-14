@@ -12,15 +12,13 @@ export default function Component(props) {
             bottom: 25,
             left: 70,
         },
-        mobile: {
+        medium: {
+            height: 375,
+            width: 375,
+        },
+        small: {
             height: 300,
             width: 300,
-            padding: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-            },
         }
     }
     ///////// STYLES \\\\\\\\\\
@@ -29,11 +27,24 @@ export default function Component(props) {
         backgroundColor: "white",
         boxShadow: "0 2px 4px 0 rgba(0,0,0,0.50)",
         marginBottom: `${sizing.padding.top + 10}px`,
+        [mediaQueries.medium]: {
+            padding: "0",
+            backgroundColor: "transparent",
+            boxShadow: "none",
+        }
     });
 
     const Meme = glamorous.img({
         width: sizing.width,
         height: sizing.height,
+        [mediaQueries.medium]: {
+            height: sizing.medium.height,
+            width: sizing.medium.width,
+        },
+        [mediaQueries.small]: {
+            height: sizing.small.height,
+            width: sizing.small.width,
+        }
     });
 
     const ClickContainer = glamorous.div({
@@ -41,6 +52,12 @@ export default function Component(props) {
         justifyContent: "space-between",
         width: `${sizing.width}px`,
         padding: "20px 0 0 0",
+        [mediaQueries.medium]: {
+            width: sizing.medium.width,
+        },
+        [mediaQueries.small]: {
+            width: sizing.small.width,
+        }
     });
 
     const BuyButton = glamorous.a({

@@ -15,6 +15,7 @@ export default function Navbar() {
         width: "100%",
         margin: "0 auto 100px auto",
         transition: "all 0.2s ease-in-out",
+        zIndex: "1",
         [mediaQueries.medium]: {
             flexDirection: "column-reverse",
             height: "190px",
