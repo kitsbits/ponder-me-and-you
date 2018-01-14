@@ -35,6 +35,10 @@ export default class LandingContainer extends React.Component {
         });
     }
 
+    genCardHeights(mediaQuery) {
+
+    }
+
     componentDidMount() {
         this.getMemes();
     }
@@ -44,7 +48,7 @@ export default class LandingContainer extends React.Component {
         const Container = glamorous.div({
             display: "flex",
             flexDirection: "column",
-            marginLeft: "30%",
+            marginLeft: "33%",
             marginTop: "200px",
             [mediaQueries.medium]: {
                 margin: "200px auto auto auto",
