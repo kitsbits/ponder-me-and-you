@@ -1,10 +1,12 @@
 import React from "react";
 import glamorous from "glamorous";
+import { Switch, Route } from "react-router-dom";
 import { mediaQueries } from "../styles/global";
 
 // Components \\
 import Navbar from "./Navbar";
-import AddMeme from "./addToMemes/Container";
+import AddMeme from "./addToMemes/AddMeme";
+import MemePage from "./meme/MemePage";
 import Landing from "./landing/Container";
 import Sidebar from "./Sidebar";
 
@@ -19,15 +21,28 @@ export default function App() {
         display: "flex",
         flexWrap: "wrap",
     });
+
+    const ContentContainer = glamorous.div({
+        marginLeft: "33%",
+        marginTop: "200px",
+        [mediaQueries.medium]: {
+            margin: "300px auto auto auto",
+        }
+    });
     ////////////////////////////////
-    return(
+    return (
         <PageContainer>
             <Navbar />
             <MainContainer>
                 <Sidebar />
-                <Landing />
+                    <ContentContainer>
+                        <Switch>
+                            <Route exact path="/" component={Landing}/>
+                            <Route path="/add-meme" component={AddMeme}/>
+                            <Route path="/meme" component={MemePage}/>
+                        </Switch>
+                    </ContentContainer>
             </MainContainer>
-
         </PageContainer>
     )
 }

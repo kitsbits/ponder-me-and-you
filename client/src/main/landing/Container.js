@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import glamorous from "glamorous";
 import { mediaQueries } from "../../styles/global";
-import Component from "./Component";
+import MemeComponent from "./MemeComponent";
 
 export default class LandingContainer extends React.Component {
     constructor() {
@@ -29,7 +29,7 @@ export default class LandingContainer extends React.Component {
 
     mapMemes() {
         return this.state.memes.map(meme => {
-                return <Component
+                return <MemeComponent
                     key={meme._id}
                     meme={meme}/>
         });
@@ -48,11 +48,6 @@ export default class LandingContainer extends React.Component {
         const Container = glamorous.div({
             display: "flex",
             flexDirection: "column",
-            marginLeft: "33%",
-            marginTop: "200px",
-            [mediaQueries.medium]: {
-                margin: "300px auto auto auto",
-            }
         });
         ////////////////////////////////
 

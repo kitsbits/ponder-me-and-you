@@ -1,8 +1,9 @@
 import React from "react";
 import glamorous from "glamorous";
+import { Link } from "react-router-dom";
 import { mediaQueries, colors } from "../../styles/global";
 
-export default function Component(props) {
+export default function MemeComponent(props) {
     const sizing = {
         height: 412,
         width: 412,
@@ -99,7 +100,7 @@ export default function Component(props) {
     ////////////////////////////////
     return (
         <Card>
-            <Meme src={props.meme.pictureUrl} alt={props.meme.title} />
+            <Link to="/meme"><Meme src={props.meme.pictureUrl} alt={props.meme.title} /></Link>
             <ClickContainer>
                 <BuyButton>BUY</BuyButton>
                 <ShareContainer>

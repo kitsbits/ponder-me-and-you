@@ -1,5 +1,5 @@
 import React from "react";
-import Component from "./Component";
+import AddMeme from "./AddMeme";
 import axios from "axios";
 
 export default class AddContainer extends React.Component {
@@ -47,8 +47,8 @@ export default class AddContainer extends React.Component {
     }
 
     render() {
-        return(
-            <Component
+        return (
+            <AddMeme
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
                 input={this.state}/>
