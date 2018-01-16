@@ -12,8 +12,13 @@ const memeSchema = new Schema({
         required: true
     },
     products: [{
-        type: Schema.Types.ObjectId,
-        ref: "Product"
+        productType: {
+        type: String,
+        enum: ["Framed", "Unframed", "Canvas"]
+        },
+        price: Number,
+        pictureUrl: String,
+        description: String
     }]
 }, { timestamps: true });
 
