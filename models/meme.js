@@ -11,15 +11,23 @@ const memeSchema = new Schema({
         type: String,
         required: true
     },
-    products: [{
-        productType: {
-        type: String,
-        enum: ["Framed", "Unframed", "Canvas"]
+    products: {
+        framed: {
+            price: Number,
+            pictureUrl: String,
+            description: String
         },
-        price: Number,
-        pictureUrl: String,
-        description: String
-    }]
+        unframed: {
+            price: Number,
+            pictureUrl: String,
+            description: String
+        },
+        canvas: {
+            price: Number,
+            pictureUrl: String,
+            description: String
+        }
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Meme", memeSchema);

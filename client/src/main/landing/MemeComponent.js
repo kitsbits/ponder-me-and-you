@@ -100,7 +100,7 @@ export default function MemeComponent(props) {
     ////////////////////////////////
     return (
         <Card>
-            <Link to="/meme"><Meme src={props.meme.pictureUrl} alt={props.meme.title} /></Link>
+            <Link to={`/meme/${props.meme._id}`}><Meme src={props.meme.pictureUrl} alt={props.meme.title} id={props.meme._id}/></Link>
             <ClickContainer>
                 <BuyButton>BUY</BuyButton>
                 <ShareContainer>
