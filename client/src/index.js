@@ -11,11 +11,11 @@ import "./styles/index.css";
 import App from "./main/App";
 
 // reducers \\
-import landing from "./main/redux/landing";
+import reducer from "./main/redux/";
 
-const reducer = combineReducers({
-    landing
-});
+// const reducer = combineReducers({
+//     landing
+// });
 
 const store = createStore(reducer, applyMiddleware(thunk));
 

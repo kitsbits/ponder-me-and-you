@@ -5,7 +5,7 @@ import { mediaQueries } from "../styles/global";
 
 // Components \\
 import Navbar from "./Navbar";
-import AddMeme from "./addToMemes/AddMeme";
+import Admin from "./admin/Container";
 import MemePage from "./meme/MemePage";
 import Landing from "./landing/Container";
 import Sidebar from "./Sidebar";
@@ -38,7 +38,7 @@ export default function App() {
                     <ContentContainer>
                         <Switch>
                             <Route exact path="/" component={Landing}/>
-                            <Route path="/add-meme" component={AddMeme}/>
+                        <Route path="/add-meme" component={Admin}/>
                             <Route path="/meme" component={MemePage}/>
                         </Switch>
                     </ContentContainer>

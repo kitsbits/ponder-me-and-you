@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes \\
-app.use("/home", require("./routes/home"));
-app.use("/add-meme", require("./routes/meme"));
+app.use("/memes", require("./routes/memes"));
+app.use("/admin", require("./routes/admin"));
 app.use("/auth", require("./routes/auth"));
 
 mongoose.connect("mongodb://localhost/ponder", {keepAlive: true, reconnectTries: Number.MAX_VALUE, useMongoClient: true}, (err) => {
