@@ -11,6 +11,7 @@ const _formatUrl = (url) => {
 Admin.post("/", (req, res) => {
     req.body.pictureUrl = _formatUrl(req.body.pictureUrl);
     const newMeme = new Meme(req.body);
+    newMeme.products = {};
     newMeme.save((err, addedMeme) => {
         if (err) res.status(500).send(err);
         res.send(addedMeme);
@@ -18,11 +19,36 @@ Admin.post("/", (req, res) => {
 });
 
 Admin.put("/:id", (req, res) => {
-    req.body.pictureUrl = _formatUrl(req.body.pictureUrl);
-    req.body.products.pictureUrl = _formatUrl(req.body.products.pictureUrl);
-    Meme.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}, (err, updatedMeme) => {
+    if (req.body.pictureUrl) {
+        req.body.pictureUrl = _formatUrl(req.body.pictureUrl);
+    }
+    if (req.body.products.pictureUrl) {
+        req.body.products.pictureUrl = _formatUrl(req.body.products.pictureUrl);
+    }
+    Meme.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, upsert: true}, (err, updatedMeme) => {
         if (err) res.status(500).send(err);
         res.send(updatedMeme);
+    });
+});
+
+Admin.put("/:id/products/:type", (req, res) => {
+    if (req.body.pictureUrl) {
+        req.body.pictureUrl = _formatUrl(req.body.pictureUrl);
+    }
+    const type = req.params.type;
+    Meme.findOne({_id: req.params.id}, (err, meme) => {
+        if (err) return res.status(500).send(err);
+        const memeObj = meme.toObject();
+        if (!memeObj.products || !memeObj.products[type]) {
+            return res.status(400).send({message: "That product type doesn't exist yet. You must add it first"});
+        }
+        for (prop in memeObj.products[type]) {
+            meme.products[type][prop] = req.body[prop] || meme.products[type][prop]
+        }
+        meme.save(err => {
+            if (err) return res.status(500).send(err);
+            return res.send(meme);
+        });
     });
 });
 

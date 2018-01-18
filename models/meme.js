@@ -26,6 +26,11 @@ const memeSchema = new Schema({
             price: Number,
             pictureUrl: String,
             description: String
+        },
+        tote: {
+            price: Number,
+            pictureUrl: String,
+            description: String
         }
     }
 }, { timestamps: true });

@@ -40,7 +40,8 @@ class App extends React.Component {
                             <Switch>
                                 <Route exact path="/" component={Landing}/>
                                 <Route path="/add-meme" component={Admin}/>
-                                <Route path="/meme/:id/:product" component={Products}/>
+                                
+                                <Route path="/products/:product/:id/:type" component={Products}/>
                             </Switch>
                         </ContentContainer>
                 </MainContainer>

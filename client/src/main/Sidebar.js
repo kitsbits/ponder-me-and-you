@@ -21,7 +21,12 @@ function Sidebar(props) {
         }
     });
 
-    const Links = glamorous.a({
+    const productPageLinks = {
+        textDecoration: "none",
+        color: colors.grey,
+    }
+
+    const Links = glamorous.div({
         width: "125px",
         height: "35px",
         backgroundColor: colors.green,
@@ -47,7 +52,10 @@ function Sidebar(props) {
     });
 
     const ProductLinkContainer = glamorous.div({
-
+        margin: "35px auto auto 35px",
+        [mediaQueries.medium]: {
+            display: "flex",
+        }
     });
 
     const productLinks = {
@@ -64,13 +72,13 @@ function Sidebar(props) {
     return (
         <Container>
             <Title>SHOP</Title>
-            <Links href="" target="blank">PRINTS</Links>
-            <Links href="" target="blank">TOTES</Links>
+            <Links><Link to={`/products/prints`} style={productPageLinks}>PRINTS</Link></Links>
+            <Links><Link to={`/products/totes`} style={productPageLinks}>TOTES</Link></Links>
             {props.urlParams ?
             (<ProductLinkContainer>
-                <Link to={`/meme/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED</Link>
-                <Link to={`/meme/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED</Link>
-                <Link to={`/meme/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print</Link>
             </ProductLinkContainer>)
             :
             null}

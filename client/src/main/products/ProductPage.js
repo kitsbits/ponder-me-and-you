@@ -14,24 +14,20 @@ function ProductPage(props) {
 
     const Background = glamorous.div({
         position: "relative",
-        background: "url(https://www.dropbox.com/s/jfrbw41y6pa3yi6/framed_background.jpg?raw=1) no-repeat center",
+        background: `url(${props.backgroundUrl()}) no-repeat center`,
         backgroundSize: "cover",
         height: "398px",
         width: "465px",
     });
 
-    const Meme = glamorous.img({
-        position: "absolute",
-        top: "50px",
-        left: "50px",
-        height: "220px",
-        width: "220px",
-    });
+    // Img styles are dynamically set based on url parameters - edit these styles in ProductPage's Container class
+    const Meme = glamorous.img(props.memeStyles());
     ////////////////////////////////
+    console.log(props.params);
     return (
         <Container>
             <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
-            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.product].pictureUrl : null}/></Background>
+            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.type].pictureUrl : null}/></Background>
         </Container>
     )
 }

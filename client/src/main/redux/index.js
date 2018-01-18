@@ -30,21 +30,8 @@ export function addMeme(meme) {
     }
 }
 
+// get one meme
 export function selectMeme(id) {
-    return (dispatch) => {
-        axios
-        .get(`http://localhost:6100/memes/${id}`)
-        .then(response => {
-            dispatch({
-                type: "SELECT_MEME",
-                selectedMeme: response.data
-            });
-        })
-        .catch(err => console.log(err));
-    }
-}
-
-export function selectMemeProduct(productType,id) {
     return (dispatch) => {
         axios
         .get(`http://localhost:6100/memes/${id}`)
@@ -71,6 +58,7 @@ export function updateMeme(id, updatedMeme) {
     };
 }
 
+// store url parameters in store to allow sidebar to access params, dynamically render user link options
 export function getUrlParams(params) {
     return {
         type: "GET_URL_PARAMS",
