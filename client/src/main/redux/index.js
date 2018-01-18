@@ -44,6 +44,20 @@ export function selectMeme(id) {
     }
 }
 
+export function selectMemeProduct(productType,id) {
+    return (dispatch) => {
+        axios
+        .get(`http://localhost:6100/memes/${id}`)
+        .then(response => {
+            dispatch({
+                type: "SELECT_MEME",
+                selectedMeme: response.data
+            });
+        })
+        .catch(err => console.log(err));
+    }
+}
+
 export function updateMeme(id, updatedMeme) {
     return (dispatch) => {
         axios
@@ -56,6 +70,13 @@ export function updateMeme(id, updatedMeme) {
         }).catch(err => console.log(err));
     };
 }
+
+export function getUrlParams(params) {
+    return {
+        type: "GET_URL_PARAMS",
+        params
+    }
+}
 /////////////////////
 
 // REDUCER \\
@@ -63,8 +84,9 @@ const state = {
     memes: [],
     selectedMeme: {
         meme: {},
-        canEdit: false
-    }
+        ready: false
+    },
+    urlParams: null
 };
 
 export default function reducer(prevState = state, action) {
@@ -87,7 +109,7 @@ export default function reducer(prevState = state, action) {
                 selectedMeme: {
                     ...prevState.selectedMeme,
                     meme: action.selectedMeme,
-                    canEdit: true
+                    ready: true
                 }
             };
 
@@ -95,6 +117,12 @@ export default function reducer(prevState = state, action) {
             return {
                 ...prevState,
                 updatedMeme: action.updatedMeme
+            };
+
+        case "GET_URL_PARAMS":
+            return {
+                ...prevState,
+                urlParams: action.params
             };
 
         default:

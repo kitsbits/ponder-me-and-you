@@ -1,14 +1,15 @@
 import React from "react";
 import glamorous from "glamorous";
 import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
 
 function ProductPage(props) {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
-
+        paddingBottom: "55px",
     });
     const Title = glamorous.h2({
-
+        textAlign: "right",
     });
 
     const Background = glamorous.div({
@@ -27,11 +28,10 @@ function ProductPage(props) {
         width: "220px",
     });
     ////////////////////////////////
-
     return (
         <Container>
-            <Title>{props.selectedMeme.meme.title}</Title>
-        <Background><Meme src={props.selectedMeme.canEdit ? props.selectedMeme.meme.products.framed.pictureUrl : null}/></Background>
+            <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
+            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.product].pictureUrl : null}/></Background>
         </Container>
     )
 }

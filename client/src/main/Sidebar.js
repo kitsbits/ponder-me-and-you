@@ -1,8 +1,10 @@
 import React from "react";
 import glamorous from "glamorous";
 import { mediaQueries, colors } from "../styles/global"
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-export default function Sidebar() {
+function Sidebar(props) {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
         position: "fixed",
@@ -43,12 +45,39 @@ export default function Sidebar() {
     const Title = glamorous.h1({
         marginRight: "20px",
     });
+
+    const ProductLinkContainer = glamorous.div({
+
+    });
+
+    const productLinks = {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        height: "66px",
+        fontSize: "1.2em",
+        textDecoration: "none",
+        color: colors.grey,
+
+    };
     ////////////////////////////////
     return (
         <Container>
             <Title>SHOP</Title>
             <Links href="" target="blank">PRINTS</Links>
             <Links href="" target="blank">TOTES</Links>
+            {props.urlParams ?
+            (<ProductLinkContainer>
+                <Link to={`/meme/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED</Link>
+                <Link to={`/meme/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED</Link>
+                <Link to={`/meme/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print</Link>
+            </ProductLinkContainer>)
+            :
+            null}
         </Container>
     )
 }
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, {})(Sidebar);
