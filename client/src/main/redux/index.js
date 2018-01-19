@@ -74,7 +74,9 @@ const state = {
         meme: {},
         ready: false
     },
-    urlParams: null
+    urlParams: {
+
+    }
 };
 
 export default function reducer(prevState = state, action) {

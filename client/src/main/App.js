@@ -35,12 +35,11 @@ class App extends React.Component {
             <PageContainer>
                 <Navbar />
                 <MainContainer>
-                    <Sidebar />
+                    <Sidebar highlightCurrentPage={this.onCurrentPage}/>
                         <ContentContainer>
                             <Switch>
                                 <Route exact path="/" component={Landing}/>
                                 <Route path="/add-meme" component={Admin}/>
-                                
                                 <Route path="/products/:product/:id/:type" component={Products}/>
                             </Switch>
                         </ContentContainer>

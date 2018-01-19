@@ -28,6 +28,7 @@ function Sidebar(props) {
     }
 
     const Links = glamorous.div({
+        position: "relative",
         width: "125px",
         height: "45px",
         backgroundColor: colors.green,
@@ -48,32 +49,49 @@ function Sidebar(props) {
         }
     });
 
+    const OnCurrentPage = glamorous.div({
+        position: "absolute",
+        bottom: "-2px",
+        left: "15%",
+        // height: "45px",
+        width: "95%",
+        borderBottom: `2px solid ${colors.grey}`,
+    });
+
     const Title = glamorous.h1({
         marginRight: "10px",
     });
 
     const ProductLinkContainer = glamorous.div({
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         margin: "35px auto auto 35px",
+        height: "175px",
         [mediaQueries.medium]: {
             position: "absolute",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
             bottom: "-750%",
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-            marginLeft: "-15%",
+            width: "100vw",
+            margin: "auto",
             fontSize: "0.85em",
+            height: "auto",
         },
         [mediaQueries.small]: {
             bottom: "-650%",
             marginLeft: "-5%",
+            height: "auto",
         }
     });
 
     const productLinks = {
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-around",
-        height: "66px",
+        // height: "66px",
         fontSize: "1.2em",
         textDecoration: "none",
         color: colors.grey,
@@ -83,13 +101,13 @@ function Sidebar(props) {
     return (
         <Container>
             <Title>SHOP</Title>
-            <Links><Link to={`/products/prints`} style={productPageLinks}>PRINTS</Link></Links>
-            <Links><Link to={`/products/totes`} style={productPageLinks}>TOTES</Link></Links>
+            <Links><Link to={`/products/prints`} style={productPageLinks}>PRINTS{props.urlParams.product === "prints" ? <OnCurrentPage /> : null}</Link></Links>
+            <Links><Link to={`/products/totes`} style={productPageLinks}>TOTES{props.urlParams.product === "totes"? <OnCurrentPage /> : null}</Link></Links>
             {props.urlParams ?
             (<ProductLinkContainer>
-                <Link to={`/products/prints/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED</Link>
-                <Link to={`/products/prints/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED</Link>
-                <Link to={`/products/prints/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED{props.urlParams.type === "framed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED{props.urlParams.type === "unframed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/products/prints/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print{props.urlParams.type === "canvas" ? <OnCurrentPage /> : null}</Link>
             </ProductLinkContainer>)
             :
             null}
