@@ -2,17 +2,26 @@ import React from "react";
 import ProductPage from "./ProductPage";
 import { connect } from "react-redux";
 import { selectMeme, getUrlParams } from "../redux";
+import { mediaQueries, sizes } from "../../styles/global";
 
 class MemeContainer extends React.Component {
     constructor() {
         super();
         this.chooseBackground = this.chooseBackground.bind(this);
         this.setMemePosition = this.setMemePosition.bind(this);
+        this.mapSizeSelections = this.mapSizeSelections.bind(this);
     }
 
     componentDidMount() {
         this.props.selectMeme(this.props.match.params.id);
         this.props.getUrlParams(this.props.match.params);
+    }
+
+    mapSizeSelections() {
+        const type = this.props.match.params.type;
+        return sizes[type].map(size => {
+            return <option>{size}</option>;
+        });
     }
 
     chooseBackground() {
@@ -33,8 +42,17 @@ class MemeContainer extends React.Component {
                     left: "50px",
                     height: "220px",
                     width: "220px",
+                    [mediaQueries.medium]: {
+                        height: "190px",
+                        width: "190px",
+                        top: "30px",
+                        left: "30px",
+                    },
+                    [mediaQueries.small]: {
+                        height: "150px",
+                        width: "150px",
+                    }
                 }
-
 
             case "unframed":
                 return {
@@ -43,6 +61,17 @@ class MemeContainer extends React.Component {
                     left: "50px",
                     height: "270px",
                     width: "270px",
+                    [mediaQueries.medium]: {
+                        height: "240px",
+                        width: "240px",
+                        left: "25px",
+                    },
+                    [mediaQueries.small]: {
+                        height: "190px",
+                        width: "190px",
+                        top: "-20px",
+                        left: "25px",
+                    }
                 }
 
         }
@@ -53,7 +82,8 @@ class MemeContainer extends React.Component {
             <ProductPage
                 params={this.props.match.params}
                 backgroundUrl={this.chooseBackground}
-                memeStyles={this.setMemePosition}/>
+                memeStyles={this.setMemePosition}
+                sizes={this.mapSizeSelections}/>
         )
     }
 }

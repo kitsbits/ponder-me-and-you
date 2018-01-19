@@ -13,6 +13,7 @@ function Sidebar(props) {
         flexDirection: "column",
         justifyContent: "space-around",
         alignItems: "center",
+        // flexWrap: "wrap",
         [mediaQueries.medium]: {
             position: "absolute",
             flexDirection: "row",
@@ -28,7 +29,7 @@ function Sidebar(props) {
 
     const Links = glamorous.div({
         width: "125px",
-        height: "35px",
+        height: "45px",
         backgroundColor: colors.green,
         margin: "10px 0",
         textDecoration: "none",
@@ -42,19 +43,29 @@ function Sidebar(props) {
         },
         [mediaQueries.medium]: {
             marginRight: "10px",
-            width: "110px",
+            width: "100px",
             height: "55px",
         }
     });
 
     const Title = glamorous.h1({
-        marginRight: "20px",
+        marginRight: "10px",
     });
 
     const ProductLinkContainer = glamorous.div({
         margin: "35px auto auto 35px",
         [mediaQueries.medium]: {
+            position: "absolute",
+            bottom: "-750%",
             display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            marginLeft: "-15%",
+            fontSize: "0.85em",
+        },
+        [mediaQueries.small]: {
+            bottom: "-650%",
+            marginLeft: "-5%",
         }
     });
 
