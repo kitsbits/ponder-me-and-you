@@ -30,6 +30,8 @@ class MemeContainer extends React.Component {
                 return "https://www.dropbox.com/s/jfrbw41y6pa3yi6/framed_background.jpg?raw=1";
             case "unframed":
                 return "https://www.dropbox.com/s/xvgncdff7t5acfh/unframed_background.jpg?raw=1";
+            case "canvas":
+                return "https://www.dropbox.com/s/ywpkvpsrctvptjt/canvas_background.jpg?raw=1";
         }
     }
 
@@ -52,7 +54,7 @@ class MemeContainer extends React.Component {
                         height: "150px",
                         width: "150px",
                     }
-                }
+                };
 
             case "unframed":
                 return {
@@ -72,7 +74,22 @@ class MemeContainer extends React.Component {
                         top: "-20px",
                         left: "25px",
                     }
-                }
+                };
+
+            case "canvas":
+                return {
+                    position: "absolute",
+                    left: "65px",
+                    height: "405px",
+                    [mediaQueries.medium]: {
+                        height: "327px",
+                        left: "50px",
+                    },
+                    [mediaQueries.small]: {
+                        height: "264px",
+                        left: "40px",
+                    }
+                };
 
         }
     }

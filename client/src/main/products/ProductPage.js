@@ -45,7 +45,7 @@ function ProductPage(props) {
 
     const BuyButton = glamorous.button({
         height: "65px",
-        width: "150px",
+        width: "30%",
         outline: "none",
         border: "none",
         backgroundColor: colors.green,
@@ -55,14 +55,14 @@ function ProductPage(props) {
     const SelectContainer = glamorous.div({
         position: "relative",
         height: "65px",
-        width: "200px",
+        width: "50%",
         border: `1px solid ${colors.grey}`,
     });
 
     const SelectSize = glamorous.select({
         position: "relative",
         height: "62px",
-        width: "200px",
+        width: "100%",
         fontSize: "1.2em",
         WebkitAppearance: "none",
         backgroundColor: "transparent",
