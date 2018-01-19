@@ -20,7 +20,7 @@ class MemeContainer extends React.Component {
     mapSizeSelections() {
         const type = this.props.match.params.type;
         return sizes[type].map(size => {
-            return <option>{size}</option>;
+            return <option key={size}>{size}</option>;
         });
     }
 

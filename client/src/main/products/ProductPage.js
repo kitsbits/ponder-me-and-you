@@ -31,7 +31,7 @@ function ProductPage(props) {
 
     const DetailsContainer = glamorous.div({
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
         marginTop: "35px",
         width: "465px",
@@ -52,15 +52,35 @@ function ProductPage(props) {
         fontSize: "1em",
     });
 
-    const SelectSize = glamorous.select({
+    const SelectContainer = glamorous.div({
+        position: "relative",
         height: "65px",
         width: "200px",
+        border: `1px solid ${colors.grey}`,
+    });
+
+    const SelectSize = glamorous.select({
+        position: "relative",
+        height: "62px",
+        width: "200px",
         fontSize: "1.2em",
+        WebkitAppearance: "none",
+        backgroundColor: "transparent",
+        paddingLeft: "15px",
         color: colors.grey,
-        borderRadius: "none",
+        border: "none",
         outline: "none",
         textAlign: "center",
+        zIndex: "1",
     });
+
+    const chevron = {
+        color: colors.grey,
+        position: "absolute",
+        right: "10px",
+        top: "50%",
+        transform: "translateY(-50%)",
+    }
 
     // Img styles are dynamically set based on url parameters - edit these styles in ProductPage's Container class
     const Meme = glamorous.img(props.memeStyles());
@@ -71,9 +91,12 @@ function ProductPage(props) {
             <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.type].pictureUrl : null}/></Background>
             <DetailsContainer>
                 <BuyButton type="button">ADD TO CART</BuyButton>
-                <SelectSize>
-                    {props.sizes()}
-                </SelectSize>
+                <SelectContainer>
+                    <SelectSize>
+                        {props.sizes()}
+                    </SelectSize>
+                    <i className="fa fa-lg fa-chevron-down" style={chevron}/>
+                </SelectContainer>
             </DetailsContainer>
         </Container>
     )
