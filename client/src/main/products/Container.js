@@ -1,7 +1,7 @@
 import React from "react";
 import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectMeme, getUrlParams, getMemes } from "../redux";
 import { mediaQueries, sizes } from "../../styles/global";
@@ -13,7 +13,6 @@ class MemeContainer extends React.Component {
         this.setMemePosition = this.setMemePosition.bind(this);
         this.mapSizeSelections = this.mapSizeSelections.bind(this);
         this.mapMemes = this.mapMemes.bind(this);
-        // this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -22,13 +21,9 @@ class MemeContainer extends React.Component {
         this.props.getUrlParams(this.props.match.params);
     }
 
-    // handleClick(id) {
-    //     return this.props.history.push(`products/prints/${id}/${this.props.match.params.type}`);
-    // }
-
     mapMemes() {
         return this.props.memes.map(meme => {
-            return <Thumbnail key={meme._id} meme={meme} />;
+            return <Link to={`../${meme._id}/${this.props.match.params.type}`}><Thumbnail key={meme._id} meme={meme} /></Link>;
         });
     }
 
