@@ -8,6 +8,13 @@ function ProductPage(props) {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
         paddingBottom: "55px",
+        width: "465px",
+        [mediaQueries.medium]: {
+            width: "375px",
+        },
+        [mediaQueries.small]: {
+            width: "300px",
+        }
     });
     const Title = glamorous.h2({
         textAlign: "right",
@@ -18,14 +25,12 @@ function ProductPage(props) {
         background: `url(${props.backgroundUrl()}) no-repeat center`,
         backgroundSize: "cover",
         height: "398px",
-        width: "465px",
+        width: "100%",
         [mediaQueries.medium]: {
             height: "320.97px",
-            width: "375px",
         },
         [mediaQueries.small]: {
             height: "256.77px",
-            width: "300px",
         }
     });
 
@@ -34,13 +39,11 @@ function ProductPage(props) {
         justifyContent: "space-between",
         alignItems: "center",
         marginTop: "35px",
-        width: "465px",
+        // marginBottom: "30px",
+        width: "100%",
         [mediaQueries.medium]: {
-            width: "375px",
+            marginBottom: "130px",
         },
-        [mediaQueries.small]: {
-            width: "300px",
-        }
     });
 
     const BuyButton = glamorous.button({
@@ -82,10 +85,29 @@ function ProductPage(props) {
         transform: "translateY(-50%)",
     }
 
+    const ChooseMemeTitle = glamorous.h3({
+        paddingBottom: "15px",
+        borderBottom: `1px dashed ${colors.grey}`,
+        marginBottom: "35px",
+    });
+
+    const MemesContainer = glamorous.div({
+        width: "550px",
+        height: "300px",
+        whiteSpace : "nowrap",
+        overflowX: "scroll",
+        [mediaQueries.medium]: {
+            whiteSpace : "normal",
+            width: "300px",
+            height: "auto",
+        },
+    });
+
     // Img styles are dynamically set based on url parameters - edit these styles in ProductPage's Container class
     const Meme = glamorous.img(props.memeStyles());
     ////////////////////////////////
     return (
+        <div>
         <Container>
             <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
             <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.type].pictureUrl : null}/></Background>
@@ -99,6 +121,11 @@ function ProductPage(props) {
                 </SelectContainer>
             </DetailsContainer>
         </Container>
+        <ChooseMemeTitle>More</ChooseMemeTitle>
+        <MemesContainer>
+            {props.mapMemes()}
+        </MemesContainer>
+        </div>
     )
 }
 

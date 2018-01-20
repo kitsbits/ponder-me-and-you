@@ -1,7 +1,9 @@
 import React from "react";
 import ProductPage from "./ProductPage";
+import Thumbnail from "./Thumbnail";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { selectMeme, getUrlParams } from "../redux";
+import { selectMeme, getUrlParams, getMemes } from "../redux";
 import { mediaQueries, sizes } from "../../styles/global";
 
 class MemeContainer extends React.Component {
@@ -10,11 +12,24 @@ class MemeContainer extends React.Component {
         this.chooseBackground = this.chooseBackground.bind(this);
         this.setMemePosition = this.setMemePosition.bind(this);
         this.mapSizeSelections = this.mapSizeSelections.bind(this);
+        this.mapMemes = this.mapMemes.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
+        this.props.getMemes();
         this.props.selectMeme(this.props.match.params.id);
         this.props.getUrlParams(this.props.match.params);
+    }
+
+    // handleClick(id) {
+    //     return this.props.history.push(`products/prints/${id}/${this.props.match.params.type}`);
+    // }
+
+    mapMemes() {
+        return this.props.memes.map(meme => {
+            return <Thumbnail key={meme._id} meme={meme} />;
+        });
     }
 
     mapSizeSelections() {
@@ -95,14 +110,20 @@ class MemeContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
-            <ProductPage
-                params={this.props.match.params}
-                backgroundUrl={this.chooseBackground}
-                memeStyles={this.setMemePosition}
-                sizes={this.mapSizeSelections}/>
+            <div>
+                <ProductPage
+                    params={this.props.match.params}
+                    backgroundUrl={this.chooseBackground}
+                    memeStyles={this.setMemePosition}
+                    sizes={this.mapSizeSelections}
+                    mapMemes={this.mapMemes}/>
+            </div>
         )
     }
 }
 
-export default connect(null, { selectMeme, getUrlParams })(MemeContainer);
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, { selectMeme, getUrlParams, getMemes })(MemeContainer);

@@ -7,7 +7,6 @@ import { getMemes } from "../redux";
 import MemeComponent from "./MemeComponent";
 
 class LandingContainer extends React.Component {
-
     mapMemes() {
         return this.props.memes.map(meme => {
                 return <MemeComponent
