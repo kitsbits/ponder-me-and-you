@@ -13,6 +13,10 @@ export default function MemeComponent(props) {
             bottom: 25,
             left: 70,
         },
+        large: {
+            height: 475,
+            width: 475,
+        },
         medium: {
             height: 375,
             width: 375,
@@ -32,6 +36,9 @@ export default function MemeComponent(props) {
             padding: "0",
             backgroundColor: "transparent",
             boxShadow: "none",
+        },
+        [mediaQueries.large]: {
+            marginLeft: "125px",
         }
     });
 
@@ -45,7 +52,11 @@ export default function MemeComponent(props) {
         [mediaQueries.small]: {
             height: sizing.small.height,
             width: sizing.small.width,
-        }
+        },
+        [mediaQueries.large]: {
+            height: sizing.large.height,
+            width: sizing.large.width,
+        },
     });
 
     const ClickContainer = glamorous.div({
@@ -58,7 +69,10 @@ export default function MemeComponent(props) {
         },
         [mediaQueries.small]: {
             width: sizing.small.width,
-        }
+        },
+        [mediaQueries.large]: {
+            width: sizing.large.width,
+        },
     });
 
     const BuyButton = glamorous.a({
@@ -100,7 +114,7 @@ export default function MemeComponent(props) {
     ////////////////////////////////
     return (
         <Card>
-            <Link to={`/products/prints/${props.meme._id}/framed`}><Meme src={props.meme.pictureUrl} alt={`Digital art entitled: ${props.meme.title}`}/></Link>
+            <Link to={`/prints/${props.meme._id}/framed`}><Meme src={props.meme.pictureUrl} alt={`Digital art entitled: ${props.meme.title}`}/></Link>
             <ClickContainer>
                 <BuyButton>BUY</BuyButton>
                 <ShareContainer>

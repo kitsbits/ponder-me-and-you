@@ -22,7 +22,7 @@ function Sidebar(props) {
         }
     });
 
-    const productPageLinks = {
+    const categoryPageLinks = {
         textDecoration: "none",
         color: colors.grey,
     }
@@ -86,7 +86,7 @@ function Sidebar(props) {
         }
     });
 
-    const productLinks = {
+    const categoryLinks = {
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -101,13 +101,13 @@ function Sidebar(props) {
     return (
         <Container>
             <Title>SHOP</Title>
-            <Links><Link to={`/products/prints`} style={productPageLinks}>PRINTS{props.urlParams.product === "prints" ? <OnCurrentPage /> : null}</Link></Links>
-            <Links><Link to={`/products/totes`} style={productPageLinks}>TOTES{props.urlParams.product === "totes"? <OnCurrentPage /> : null}</Link></Links>
+        <Links><Link to={`/prints`} style={categoryPageLinks}>PRINTS{props.urlParams.category === "prints" ? <OnCurrentPage /> : null}</Link></Links>
+        <Links><Link to={`/totes`} style={categoryPageLinks}>TOTES{props.urlParams.category === "totes"? <OnCurrentPage /> : null}</Link></Links>
             {props.urlParams ?
             (<ProductLinkContainer>
-                <Link to={`/products/prints/${props.urlParams.id}/framed`} style={productLinks}>Matte Poster<br/>FRAMED{props.urlParams.type === "framed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/products/prints/${props.urlParams.id}/unframed`} style={productLinks}>Matte Poster<br/>UNFRAMED{props.urlParams.type === "unframed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/products/prints/${props.urlParams.id}/canvas`} style={productLinks}>Canvas Print{props.urlParams.type === "canvas" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.urlParams.id}/framed`} style={categoryLinks}>Matte Poster<br/>FRAMED{props.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.urlParams.id}/unframed`} style={categoryLinks}>Matte Poster<br/>UNFRAMED{props.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.urlParams.id}/canvas`} style={categoryLinks}>Canvas Print{props.urlParams.product === "canvas" ? <OnCurrentPage /> : null}</Link>
             </ProductLinkContainer>)
             :
             null}

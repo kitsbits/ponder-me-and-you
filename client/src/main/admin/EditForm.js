@@ -1,5 +1,4 @@
 import React from "react";
-import glamorous from "glamorous";
 import { connect } from "react-redux";
 
 function EditForm(props) {

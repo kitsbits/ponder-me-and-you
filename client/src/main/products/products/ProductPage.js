@@ -1,14 +1,14 @@
 import React from "react";
 import glamorous from "glamorous";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
-import { mediaQueries, colors } from "../../styles/global";
+import { mediaQueries, colors } from "../../../styles/global";
 
 function ProductPage(props) {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
         display: "flex",
         flexDirection: "column",
+        paddingBottom: "35px",
         [mediaQueries.large]: {
             flexDirection: "row",
             justifyContent: "space-around",
@@ -99,7 +99,7 @@ function ProductPage(props) {
         marginTop: "15px",
     });
 
-    const ChooseMemeTitle = glamorous.h3({
+    const ChooseMemeTitle = glamorous.p({
         paddingBottom: "15px",
         borderBottom: `1px dashed ${colors.grey}`,
         marginBottom: "35px",
@@ -118,18 +118,17 @@ function ProductPage(props) {
         [mediaQueries.large]: {
             whiteSpace : "normal",
             width: "250px",
-            height: "450px",
+            height: "467px",
         },
     });
 
-    // Img styles are dynamically set based on url parameters - edit these styles in ProductPage's Container class
     const Meme = glamorous.img(props.memeStyles());
     ////////////////////////////////
     return (
         <Container>
         <ProductContainer>
             <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
-            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.type].pictureUrl : null}/></Background>
+            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.product].pictureUrl : null}/></Background>
             <DetailsContainer>
                 <BuyButton type="button">ADD TO CART</BuyButton>
                 <SelectContainer>

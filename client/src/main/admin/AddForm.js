@@ -1,6 +1,4 @@
 import React from "react";
-import glamorous from "glamorous";
-
 
 export default function AddComponent(props) {
     ///////// STYLES \\\\\\\\\\

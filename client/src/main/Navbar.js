@@ -1,5 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
+import { Link } from "react-router-dom";
 import { mediaQueries, colors } from "../styles/global";
 
 export default function Navbar() {
@@ -54,7 +55,7 @@ export default function Navbar() {
 
     return (
         <Container>
-            <Logo src="https://www.dropbox.com/s/z9dvyed568m20a6/logo.png?raw=1"/>
+            <Link to="/"><Logo src="https://www.dropbox.com/s/z9dvyed568m20a6/logo.png?raw=1"/></Link>
             <LinkContainer>
                 <NavLink href="" target="blank">
                     <i className="fa fa-3x fa-instagram"></i>

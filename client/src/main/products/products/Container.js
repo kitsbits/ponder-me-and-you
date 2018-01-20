@@ -3,8 +3,8 @@ import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { selectMeme, getUrlParams, getMemes } from "../redux";
-import { mediaQueries, sizes } from "../../styles/global";
+import { selectMeme, getUrlParams, getMemes } from "../../redux";
+import { mediaQueries, sizes } from "../../../styles/global";
 
 class MemeContainer extends React.Component {
     constructor() {
@@ -21,21 +21,24 @@ class MemeContainer extends React.Component {
         this.props.getUrlParams(this.props.match.params);
     }
 
+    /////// THUMBNAIL METHODS ///////
     mapMemes() {
         return this.props.memes.map(meme => {
-            return <Link to={`../${meme._id}/${this.props.match.params.type}`}><Thumbnail key={meme._id} meme={meme} /></Link>;
+            return <Link to={`../${meme._id}/${this.props.match.params.product}`} key={meme._id}><Thumbnail meme={meme} /></Link>;
         });
     }
+    //////////////////////////////////////////////
 
+    /////// PRODUCT PAGE METHODS ///////
     mapSizeSelections() {
-        const type = this.props.match.params.type;
-        return sizes[type].map(size => {
+        const product = this.props.match.params.product;
+        return sizes[product].map(size => {
             return <option key={size}>{size}</option>;
         });
     }
 
     chooseBackground() {
-        switch(this.props.match.params.type) {
+        switch(this.props.match.params.product) {
             case "framed":
                 return "https://www.dropbox.com/s/jfrbw41y6pa3yi6/framed_background.jpg?raw=1";
             case "unframed":
@@ -46,7 +49,7 @@ class MemeContainer extends React.Component {
     }
 
     setMemePosition() {
-        switch(this.props.match.params.type) {
+        switch(this.props.match.params.product) {
             case "framed":
                 return {
                     position: "absolute",
@@ -105,7 +108,6 @@ class MemeContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <ProductPage

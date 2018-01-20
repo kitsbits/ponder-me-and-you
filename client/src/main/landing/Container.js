@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import glamorous from "glamorous";
-import { mediaQueries } from "../../styles/global";
 import { connect } from "react-redux";
 import { getMemes } from "../redux";
 import MemeComponent from "./MemeComponent";
