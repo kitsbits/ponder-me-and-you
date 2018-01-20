@@ -28,6 +28,9 @@ class App extends React.Component {
             marginTop: "200px",
             [mediaQueries.medium]: {
                 margin: "300px auto auto auto",
+            },
+            [mediaQueries.large]: {
+                marginLeft: "23%",
             }
         });
         ////////////////////////////////

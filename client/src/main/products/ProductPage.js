@@ -7,6 +7,17 @@ import { mediaQueries, colors } from "../../styles/global";
 function ProductPage(props) {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
+        display: "flex",
+        flexDirection: "column",
+        [mediaQueries.large]: {
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "70vw",
+            maxWidth: "980px",
+        },
+    });
+
+    const ProductContainer = glamorous.div({
         paddingBottom: "55px",
         width: "465px",
         [mediaQueries.medium]: {
@@ -14,7 +25,7 @@ function ProductPage(props) {
         },
         [mediaQueries.small]: {
             width: "300px",
-        }
+        },
     });
     const Title = glamorous.h2({
         textAlign: "right",
@@ -39,7 +50,6 @@ function ProductPage(props) {
         justifyContent: "space-between",
         alignItems: "center",
         marginTop: "35px",
-        // marginBottom: "30px",
         width: "100%",
         [mediaQueries.medium]: {
             marginBottom: "130px",
@@ -85,6 +95,10 @@ function ProductPage(props) {
         transform: "translateY(-50%)",
     }
 
+    const MoreContainer = glamorous.div({
+        marginTop: "15px",
+    });
+
     const ChooseMemeTitle = glamorous.h3({
         paddingBottom: "15px",
         borderBottom: `1px dashed ${colors.grey}`,
@@ -101,14 +115,19 @@ function ProductPage(props) {
             width: "300px",
             height: "auto",
         },
+        [mediaQueries.large]: {
+            whiteSpace : "normal",
+            width: "250px",
+            height: "450px",
+        },
     });
 
     // Img styles are dynamically set based on url parameters - edit these styles in ProductPage's Container class
     const Meme = glamorous.img(props.memeStyles());
     ////////////////////////////////
     return (
-        <div>
         <Container>
+        <ProductContainer>
             <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
             <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.type].pictureUrl : null}/></Background>
             <DetailsContainer>
@@ -120,12 +139,14 @@ function ProductPage(props) {
                     <i className="fa fa-lg fa-chevron-down" style={chevron}/>
                 </SelectContainer>
             </DetailsContainer>
+        </ProductContainer>
+        <MoreContainer>
+            <ChooseMemeTitle>More</ChooseMemeTitle>
+            <MemesContainer>
+                {props.mapMemes()}
+            </MemesContainer>
+        </MoreContainer>
         </Container>
-        <ChooseMemeTitle>More</ChooseMemeTitle>
-        <MemesContainer>
-            {props.mapMemes()}
-        </MemesContainer>
-        </div>
     )
 }
 
