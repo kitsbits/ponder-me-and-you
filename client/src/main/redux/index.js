@@ -58,11 +58,24 @@ export function updateMeme(id, updatedMeme) {
     };
 }
 
-// store url parameters in store to allow sidebar to access params, dynamically render user link options
+// store url parameters in redux store to allow sidebar to access params, dynamically render user link options
 export function getUrlParams(params) {
     return {
         type: "GET_URL_PARAMS",
         params
+    }
+}
+
+// reset url parameters, selectedMeme for unmounting components
+export function resetUrlParams() {
+    return {
+        type: "RESET_URL_PARAMS"
+    }
+}
+
+export function resetSelectedMeme() {
+    return {
+        type: "RESET_SELECTED_MEME"
     }
 }
 /////////////////////
@@ -113,6 +126,21 @@ export default function reducer(prevState = state, action) {
             return {
                 ...prevState,
                 urlParams: action.params
+            };
+
+        case "RESET_URL_PARAMS":
+            return {
+                ...prevState,
+                urlParams: {}
+            };
+
+        case "RESET_SELECTED_MEME":
+            return {
+                ...prevState,
+                selectedMeme: {
+                    meme: {},
+                    ready: false
+                }
             };
 
         default:

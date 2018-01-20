@@ -103,7 +103,7 @@ function Sidebar(props) {
             <Title>SHOP</Title>
         <Links><Link to={`/prints`} style={categoryPageLinks}>PRINTS{props.urlParams.category === "prints" ? <OnCurrentPage /> : null}</Link></Links>
         <Links><Link to={`/totes`} style={categoryPageLinks}>TOTES{props.urlParams.category === "totes"? <OnCurrentPage /> : null}</Link></Links>
-            {props.urlParams ?
+        {props.urlParams.category === "prints" ?
             (<ProductLinkContainer>
                 <Link to={`/prints/${props.urlParams.id}/framed`} style={categoryLinks}>Matte Poster<br/>FRAMED{props.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
                 <Link to={`/prints/${props.urlParams.id}/unframed`} style={categoryLinks}>Matte Poster<br/>UNFRAMED{props.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>

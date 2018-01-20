@@ -3,7 +3,7 @@ import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { selectMeme, getUrlParams, getMemes } from "../../redux";
+import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux";
 import { mediaQueries, sizes } from "../../../styles/global";
 
 class MemeContainer extends React.Component {
@@ -19,6 +19,11 @@ class MemeContainer extends React.Component {
         this.props.getMemes();
         this.props.selectMeme(this.props.match.params.id);
         this.props.getUrlParams(this.props.match.params);
+    }
+
+    componentWillUnmount() {
+        this.props.resetUrlParams();
+        this.props.resetSelectedMeme();
     }
 
     /////// THUMBNAIL METHODS ///////
@@ -123,4 +128,4 @@ class MemeContainer extends React.Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { selectMeme, getUrlParams, getMemes })(MemeContainer);
+export default connect(mapStateToProps, { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme })(MemeContainer);
