@@ -3,7 +3,7 @@ import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux";
+import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
 import { mediaQueries, sizes } from "../../../styles/global";
 
 class MemeContainer extends React.Component {
@@ -28,7 +28,7 @@ class MemeContainer extends React.Component {
 
     /////// THUMBNAIL METHODS ///////
     mapMemes() {
-        return this.props.memes.map(meme => {
+        return this.props.products.memes.map(meme => {
             return <Link to={`../${meme._id}/${this.props.match.params.product}`} key={meme._id}><Thumbnail meme={meme} /></Link>;
         });
     }
@@ -58,19 +58,16 @@ class MemeContainer extends React.Component {
             case "framed":
                 return {
                     position: "absolute",
-                    top: "50px",
-                    left: "50px",
-                    height: "220px",
-                    width: "220px",
+                    left: "20px",
+                    height: "310px",
+                    width: "310px",
                     [mediaQueries.medium]: {
-                        height: "190px",
-                        width: "190px",
-                        top: "30px",
-                        left: "30px",
+                        height: "245px",
+                        width: "245px",
                     },
                     [mediaQueries.small]: {
-                        height: "150px",
-                        width: "150px",
+                        height: "200px",
+                        width: "200px",
                     }
                 };
 

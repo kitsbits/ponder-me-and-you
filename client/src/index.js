@@ -10,11 +10,13 @@ import "./styles/index.css";
 import App from "./main/App";
 
 // reducers \\
-import reducer from "./main/redux/";
+import products from "./main/redux/products";
+import cart from "./main/redux/cart";
 
-// const reducer = combineReducers({
-//     landing
-// });
+const reducer = combineReducers({
+    products,
+    cart
+});
 
 const store = createStore(reducer, applyMiddleware(thunk));
 

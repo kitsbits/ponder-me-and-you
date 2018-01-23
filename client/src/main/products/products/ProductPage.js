@@ -127,8 +127,8 @@ function ProductPage(props) {
     return (
         <Container>
         <ProductContainer>
-            <Title>{props.selectedMeme.ready ? props.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
-            <Background><Meme src={props.selectedMeme.ready ? props.selectedMeme.meme.products[props.params.product].pictureUrl : null}/></Background>
+            <Title>{props.products.selectedMeme.ready ? props.products.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
+            <Background><Meme src={props.products.selectedMeme.ready ? props.products.selectedMeme.meme.products[props.params.product].pictureUrl : null}/></Background>
             <DetailsContainer>
                 <BuyButton type="button">ADD TO CART</BuyButton>
                 <SelectContainer>

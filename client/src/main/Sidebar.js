@@ -101,13 +101,13 @@ function Sidebar(props) {
     return (
         <Container>
             <Title>SHOP</Title>
-        <Links><Link to={`/prints`} style={categoryPageLinks}>PRINTS{props.urlParams.category === "prints" ? <OnCurrentPage /> : null}</Link></Links>
-        <Links><Link to={`/totes`} style={categoryPageLinks}>TOTES{props.urlParams.category === "totes"? <OnCurrentPage /> : null}</Link></Links>
-        {props.urlParams.category === "prints" ?
+        <Link to={`/prints`} style={categoryPageLinks}><Links>PRINTS{props.products.urlParams.category === "prints" ? <OnCurrentPage /> : null}</Links></Link>
+        <Link to={`/totes`} style={categoryPageLinks}><Links>TOTES{props.products.urlParams.category === "totes"? <OnCurrentPage /> : null}</Links></Link>
+        {props.products.urlParams.category === "prints" ?
             (<ProductLinkContainer>
-                <Link to={`/prints/${props.urlParams.id}/framed`} style={categoryLinks}>Matte Poster<br/>FRAMED{props.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/prints/${props.urlParams.id}/unframed`} style={categoryLinks}>Matte Poster<br/>UNFRAMED{props.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/prints/${props.urlParams.id}/canvas`} style={categoryLinks}>Canvas Print{props.urlParams.product === "canvas" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/framed`} style={categoryLinks}>Matte Poster<br/>FRAMED{props.products.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/unframed`} style={categoryLinks}>Matte Poster<br/>UNFRAMED{props.products.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/canvas`} style={categoryLinks}>Canvas Print{props.products.urlParams.product === "canvas" ? <OnCurrentPage /> : null}</Link>
             </ProductLinkContainer>)
             :
             null}

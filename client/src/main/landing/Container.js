@@ -1,12 +1,12 @@
 import React from "react";
 import glamorous from "glamorous";
 import { connect } from "react-redux";
-import { getMemes } from "../redux";
+import { getMemes } from "../redux/products";
 import MemeComponent from "./MemeComponent";
 
 class LandingContainer extends React.Component {
     mapMemes() {
-        return this.props.memes.map(meme => {
+        return this.props.products.memes.map(meme => {
                 return <MemeComponent
                     key={meme._id}
                     meme={meme}/>

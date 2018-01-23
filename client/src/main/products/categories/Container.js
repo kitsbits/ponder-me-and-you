@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux";
+import { getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
 import Prints from "./PrintsPage";
 import Totes from "./TotesPage";
 

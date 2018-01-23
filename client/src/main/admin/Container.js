@@ -2,7 +2,7 @@ import React from "react";
 import AddForm from "./AddForm";
 import EditForm from "./EditForm";
 import { connect } from "react-redux";
-import { getMemes, addMeme, selectMeme } from "../redux";
+import { getMemes, addMeme, selectMeme } from "../redux/products";
 
 class AddContainer extends React.Component {
     constructor(props) {
