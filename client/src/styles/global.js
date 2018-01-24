@@ -9,4 +9,5 @@ export const colors = {
     green: "#ECFF6A",
     grey: "#24251D",
     cream: "#F9F9F9",
+    darkGreen: "#028282",
 }

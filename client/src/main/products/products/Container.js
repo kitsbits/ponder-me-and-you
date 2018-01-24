@@ -11,7 +11,7 @@ class MemeContainer extends React.Component {
         super();
         this.chooseBackground = this.chooseBackground.bind(this);
         this.setMemePosition = this.setMemePosition.bind(this);
-        this.mapSizeSelections = this.mapSizeSelections.bind(this);
+        // this.mapSizeSelections = this.mapSizeSelections.bind(this);
         this.mapMemes = this.mapMemes.bind(this);
     }
 
@@ -35,12 +35,6 @@ class MemeContainer extends React.Component {
     //////////////////////////////////////////////
 
     /////// PRODUCT PAGE METHODS ///////
-    mapSizeSelections() {
-        const product = this.props.match.params.product;
-        return this.props.products.sizes[product].map(size => {
-            return <option key={size}>{size}</option>;
-        });
-    }
 
     chooseBackground() {
         switch(this.props.match.params.product) {
@@ -110,15 +104,15 @@ class MemeContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 <ProductPage
                     params={this.props.match.params}
                     backgroundUrl={this.chooseBackground}
                     memeStyles={this.setMemePosition}
-                    sizes={this.mapSizeSelections}
-                    mapMemes={this.mapMemes}/>
+                    // sizes={this.mapSizeSelections}
+                    mapMemes={this.mapMemes}
+                />
             </div>
         )
     }

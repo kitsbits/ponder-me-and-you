@@ -80,6 +80,17 @@ export function resetSelectedMeme() {
 }
 /////////////////////
 
+// UTILITIES \\
+// Initial pricing/sizing settings -- update pricing with Action!
+let can = [["12x12", 10.99], ["16x16", 14.99]];
+let fram = [["10x10", 8.99], ["12x12", 10.99], ["14x14", 12.99], ["16x16", 14.99], ["18x18", 16.99]];
+let unfram = [["10x10", 10.99], ["12x12", 12.99], ["14x14", 14.99], ["16x16", 16.99], ["18x18", 18.99]];
+
+const canvas = new Map(can);
+const framed = new Map(fram);
+const unframed = new Map(unfram);
+/////////////////////////////
+
 // REDUCER \\
 const state = {
     memes: [],
@@ -87,14 +98,13 @@ const state = {
         meme: {},
         ready: false
     },
-    urlParams: {
-
-    },
+    urlParams: {},
     sizes: {
-        canvas: ["12x12", "16x16"],
-        framed: ["10x10", "12x12", "14x14", "16x16", "18x18"],
-        unframed: ["10x10", "12x12", "14x14", "16x16", "18x18"],
-    }
+        canvas: canvas,
+        framed: framed,
+        unframed: unframed,
+    },
+    selectedSize: ""
 };
 
 export default function reducer(prevState = state, action) {
