@@ -24,7 +24,6 @@ class LandingContainer extends React.Component {
             flexDirection: "column",
         });
         ////////////////////////////////
-
         return (
             <Container>
                 {this.mapMemes()}

@@ -4,7 +4,7 @@ import Thumbnail from "./Thumbnail";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
-import { mediaQueries, sizes } from "../../../styles/global";
+import { mediaQueries } from "../../../styles/global";
 
 class MemeContainer extends React.Component {
     constructor() {
@@ -37,7 +37,7 @@ class MemeContainer extends React.Component {
     /////// PRODUCT PAGE METHODS ///////
     mapSizeSelections() {
         const product = this.props.match.params.product;
-        return sizes[product].map(size => {
+        return this.props.products.sizes[product].map(size => {
             return <option key={size}>{size}</option>;
         });
     }
@@ -110,6 +110,7 @@ class MemeContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <ProductPage
