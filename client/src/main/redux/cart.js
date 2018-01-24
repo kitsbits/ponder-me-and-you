@@ -10,7 +10,9 @@ export const addToCart = (item) => {
 
 // REDUCER \\
 const state = {
-    inCart: [],
+    inCart: [{
+        test: "test"
+    }],
     tax: 0.00,
     total: 0.00,
     shipping: 0.00

@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import Admin from "./admin/Container";
 import Products from "./products/products/Container";
 import Categories from "./products/categories/Container";
+import Cart from "./cart/Container";
 import Landing from "./landing/Container";
 import Sidebar from "./Sidebar";
 
@@ -44,6 +45,7 @@ class App extends React.Component {
                             <Switch>
                                 <Route exact path="/" component={Landing}/>
                                 <Route path="/add-meme" component={Admin}/>
+                                <Route path="/cart" component={Cart}/>
                                 <Route exact path="/:category" component={Categories}/>
                                 <Route path="/:category/:id/:product" component={Products}/>
                             </Switch>
