@@ -2,22 +2,20 @@ import React from "react";
 import glamorous from "glamorous";
 import { connect } from "react-redux";
 import { mediaQueries, colors } from "../../../styles/global";
-
 import Option from "./Option";
-import Price from "./Price";
 
 class ProductPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedSize: [...props.products.sizes[props.params.product].keys()][0]
+            selectedSize: [...props.products.sizes[props.params.product].keys()][0],
+            price: [...props.products.sizes[props.params.product].values()][0]
         };
 
         this.mapSizes = this.mapSizes.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
     componentDidMount() {
-
     }
 
     mapSizes() {
@@ -29,8 +27,12 @@ class ProductPage extends React.Component {
     }
 
     handleSelect() {
-        this.setState({
-            selectedSize: document.getElementById("sizes").selectedOptions[0].value
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                selectedSize: document.getElementById("sizes").selectedOptions[0].value,
+                price: this.props.products.sizes[this.props.params.product].get(document.getElementById("sizes").selectedOptions[0].value)
+            }
         });
     }
 
@@ -166,7 +168,7 @@ class ProductPage extends React.Component {
                 <Background><Meme src={this.props.products.selectedMeme.ready ? this.props.products.selectedMeme.meme.products[this.props.params.product].pictureUrl : null}/></Background>
                 <DetailsContainer>
                     <BuyButton type="button">ADD TO CART</BuyButton>
-                    <Price>${this.props.products.sizes[this.props.params.product].get(this.state.selectedSize)}</Price>
+                    <Price id="price">${this.state.price}</Price>
                     <SelectContainer>
                         <SelectSize onChange={this.handleSelect} id="sizes" value={this.state.selectedSize}>
                             {this.mapSizes()}
