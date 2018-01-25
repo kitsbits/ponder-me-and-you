@@ -105,9 +105,9 @@ function Sidebar(props) {
         <Link to={`/totes`} style={categoryPageLinks}><Links>TOTES{props.products.urlParams.category === "totes"? <OnCurrentPage /> : null}</Links></Link>
         {props.products.urlParams.category === "prints" ?
             (<ProductLinkContainer>
-                <Link to={`/prints/${props.products.urlParams.id}/framed`} style={categoryLinks}>Matte Poster<br/>FRAMED{props.products.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/prints/${props.products.urlParams.id}/unframed`} style={categoryLinks}>Matte Poster<br/>UNFRAMED{props.products.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>
-                <Link to={`/prints/${props.products.urlParams.id}/canvas`} style={categoryLinks}>Canvas Print{props.products.urlParams.product === "canvas" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/framed`} style={categoryLinks} id="framed">Matte Poster<br/>FRAMED{props.products.urlParams.product === "framed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/unframed`} style={categoryLinks} id="unframed">Matte Poster<br/>UNFRAMED{props.products.urlParams.product === "unframed" ? <OnCurrentPage /> : null}</Link>
+                <Link to={`/prints/${props.products.urlParams.id}/canvas`} style={categoryLinks} id="canvas">Canvas Print{props.products.urlParams.product === "canvas" ? <OnCurrentPage /> : null}</Link>
             </ProductLinkContainer>)
             :
             null}

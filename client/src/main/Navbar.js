@@ -63,6 +63,7 @@ export default function Navbar() {
                 <NavLink href="" target="blank">
                     <i className="fa fa-3x fa-facebook-official"></i>
                 </NavLink>
+                <Link to="/cart">CART</Link>
             </LinkContainer>
         </Container>
     )

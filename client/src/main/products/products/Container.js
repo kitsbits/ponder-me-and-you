@@ -5,7 +5,7 @@ import Option from "./Option";
 
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
+import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme, } from "../../redux/products";
 import { addItem } from "../../redux/cart";
 import { mediaQueries } from "../../../styles/global";
 
@@ -69,13 +69,27 @@ class MemeContainer extends React.Component {
     }
 
     addToCart() {
-        const product = this.props.products.selectedMeme.meme;
-        const itemToAdd = {
+        const meme = this.props.products.selectedMeme.meme;
+        const whichProduct = () => {
+            switch(this.props.match.params.product) {
+                case "framed":
+                    return "Matte Poster (Framed)";
+
+                case "unframed":
+                    return "Matte Poster (Unframed)";
+
+                case "canvas":
+                    return "Canvas Print";
+            }
+        }
+
+        const item = {
             ...this.state,
-            title: product.title,
-            pictureUrl: product.pictureUrl
+            title: meme.title,
+            pictureUrl: meme.pictureUrl,
+            product: whichProduct()
         };
-        this.props.addItem(itemToAdd);
+        this.props.addItem(item);
     }
 
     chooseBackground() {
@@ -146,8 +160,7 @@ class MemeContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.products);
-        console.log(this.props.cart);
+        console.log(this.props.cart.inCart)
         return (
             <div>
                 <ProductPage

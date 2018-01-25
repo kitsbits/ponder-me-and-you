@@ -11,8 +11,6 @@ class CartContainer extends React.Component {
     }
 
     render() {
-
-        // return <h1>hi</h1>
         return this.mapCart();
     }
 }

@@ -32,7 +32,7 @@ export default function reducer(prevState = state, action) {
                 inCart: newCart.push(action.item)
             }
         default:
-            return {...prevState};
+            return prevState;
     }
 }
 

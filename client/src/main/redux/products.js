@@ -103,6 +103,12 @@ const state = {
         canvas: canvas,
         framed: framed,
         unframed: unframed,
+    },
+    cart: {
+        inCart: [],
+        tax: 0.00,
+        total: 0.00,
+        shipping: 0.00
     }
 };
 
@@ -115,9 +121,11 @@ export default function reducer(prevState = state, action) {
             };
 
         case "ADD_MEME":
+            const newMemes = [...prevState.memes];
+            newMemes.push(action.memeAdded);
             return {
                 ...prevState,
-                memes: [...prevState.memes].push(action.memeAdded)
+                memes: newMemes
             };
 
         case "SELECT_MEME":
@@ -158,7 +166,7 @@ export default function reducer(prevState = state, action) {
             };
 
         default:
-        return state;
+            return prevState;
     }
 }
 /////////////////////
