@@ -1,7 +1,7 @@
 // ACTIONS \\
-export const addToCart = (item) => {
+export const addItem = (item) => {
     return {
-        type: "ADD_TO_CART",
+        type: "ADD_ITEM",
         item
     }
 }
@@ -10,24 +10,29 @@ export const addToCart = (item) => {
 
 // REDUCER \\
 const state = {
-    inCart: [{
-        test: "test"
-    }],
+    inCart: [],
     tax: 0.00,
     total: 0.00,
     shipping: 0.00
 };
 
 export default function reducer(prevState = state, action) {
+    let newCart = [...prevState.inCart];
+    newCart.push(action.item);
     switch(action.type) {
-        case "ADD_TO_CART":
-            let newCart = [...prevState.inCart];
+        case "ADD_ITEM":
+            return {
+                ...prevState,
+                inCart: newCart
+            }
+
+        case "REMOVE_ITEM":
             return {
                 ...prevState,
                 inCart: newCart.push(action.item)
             }
         default:
-            return prevState;
+            return {...prevState};
     }
 }
 

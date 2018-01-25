@@ -103,8 +103,7 @@ const state = {
         canvas: canvas,
         framed: framed,
         unframed: unframed,
-    },
-    selectedSize: ""
+    }
 };
 
 export default function reducer(prevState = state, action) {

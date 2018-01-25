@@ -1,17 +1,29 @@
 import React from "react";
 import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
+import Option from "./Option";
+
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
+import { addItem } from "../../redux/cart";
 import { mediaQueries } from "../../../styles/global";
 
 class MemeContainer extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        const sizes = props.products.sizes;
+        const product = props.match.params.product;
+        this.state = {
+            selectedSize: [...sizes[product].keys()][0],
+            price: [...sizes[product].values()][0]
+        };
+
+        this.mapSizes = this.mapSizes.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.addToCart = this.addToCart.bind(this);
         this.chooseBackground = this.chooseBackground.bind(this);
         this.setMemePosition = this.setMemePosition.bind(this);
-        // this.mapSizeSelections = this.mapSizeSelections.bind(this);
         this.mapMemes = this.mapMemes.bind(this);
     }
 
@@ -35,6 +47,36 @@ class MemeContainer extends React.Component {
     //////////////////////////////////////////////
 
     /////// PRODUCT PAGE METHODS ///////
+    mapSizes() {
+        const product = this.props.match.params.product;
+        const availableSizes = [...this.props.products.sizes[product].keys()];
+        return availableSizes.map(size => {
+                return <Option key={size} size={size} />;
+        });
+    }
+
+    handleSelect() {
+        this.setState(prevState => {
+            const selectedSize = document.getElementById("sizes").selectedOptions[0].value;
+            const sizes = this.props.products.sizes;
+            const product = this.props.match.params.product;
+            return {
+                ...prevState,
+                selectedSize: selectedSize,
+                price: sizes[product].get(selectedSize)
+            }
+        });
+    }
+
+    addToCart() {
+        const product = this.props.products.selectedMeme.meme;
+        const itemToAdd = {
+            ...this.state,
+            title: product.title,
+            pictureUrl: product.pictureUrl
+        };
+        this.props.addItem(itemToAdd);
+    }
 
     chooseBackground() {
         switch(this.props.match.params.product) {
@@ -104,14 +146,19 @@ class MemeContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props.products);
+        console.log(this.props.cart);
         return (
             <div>
                 <ProductPage
                     params={this.props.match.params}
                     backgroundUrl={this.chooseBackground}
                     memeStyles={this.setMemePosition}
-                    // sizes={this.mapSizeSelections}
                     mapMemes={this.mapMemes}
+                    mapSizes={this.mapSizes}
+                    handleSelect={this.handleSelect}
+                    addToCart={this.addToCart}
+                    state={this.state}
                 />
             </div>
         )
@@ -120,4 +167,4 @@ class MemeContainer extends React.Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme })(MemeContainer);
+export default connect(mapStateToProps, { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme, addItem })(MemeContainer);
