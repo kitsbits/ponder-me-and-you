@@ -10,7 +10,7 @@ export const addItem = (item) => {
 
 // REDUCER \\
 const state = {
-    inCart: [],
+    inCart: JSON.parse(window.localStorage.getItem("cart")) || [],
     tax: 0.00,
     total: 0.00,
     shipping: 0.00
@@ -18,9 +18,10 @@ const state = {
 
 export default function reducer(prevState = state, action) {
     let newCart = [...prevState.inCart];
-    newCart.push(action.item);
     switch(action.type) {
         case "ADD_ITEM":
+        newCart.push(action.item);
+        localStorage.setItem("cart", JSON.stringify(newCart));
             return {
                 ...prevState,
                 inCart: newCart
