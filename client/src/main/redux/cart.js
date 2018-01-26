@@ -27,15 +27,30 @@ const state = {
 
 export default function reducer(prevState = state, action) {
     let newCart = [...prevState.inCart];
+    let newTotal;
+
     switch(action.type) {
         case "ADD_ITEM":
-        action.item.id = random(9000, 900000);
-        newCart.push(action.item);
-        localStorage.setItem("cart", JSON.stringify(newCart));
+            // assign each item an id for easy removal
+            action.item.id = random(9000, 900000);
+            // compute price based on quantity
+            action.item.price = +(action.item.price * action.item.quantity).toFixed(2);
+            newCart.push(action.item);
+            // update local storage
+            localStorage.setItem("cart", JSON.stringify(newCart));
+
+            // compute new total for items in newCart
+            newTotal = newCart.reduce((totalPrice, item) => {
+                console.log(totalPrice)
+                totalPrice += item.price;
+                return +(totalPrice).toFixed(2);
+            }, 0);
+
             return {
                 ...prevState,
-                inCart: newCart
-            }
+                inCart: newCart,
+                total: newTotal
+            };
 
         case "REMOVE_ITEM":
             newCart = newCart.filter(item => item.id !== action.item.id);
@@ -45,11 +60,19 @@ export default function reducer(prevState = state, action) {
             } else {
                 localStorage.removeItem("cart");
             }
-        
+
+            // compute new total for items in newCart
+            newTotal = newCart.reduce((totalPrice, item) => {
+                totalPrice += item.price;
+                return +(totalPrice).toFixed(2);
+            }, 0);
+
             return {
                 ...prevState,
-                inCart: newCart
-            }
+                inCart: newCart,
+                total: newTotal
+            };
+
         default:
             return prevState;
     }

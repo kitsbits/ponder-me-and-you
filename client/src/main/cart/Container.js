@@ -8,9 +8,12 @@ class CartContainer extends React.Component {
         super();
         this.removeItem = this.removeItem.bind(this);
     }
+
     mapCart() {
         return this.props.cart.inCart.map((item, i) => {
-            return <Item key={i} item={item} remove={this.removeItem}/>
+            return <Item key={i}
+                        item={item}
+                        remove={this.removeItem}/>
         });
     }
 
@@ -19,7 +22,12 @@ class CartContainer extends React.Component {
     }
 
     render() {
-        return this.mapCart();
+        return (
+            <div>
+                {this.mapCart()}
+                <h1>${this.props.cart.total}</h1>
+            </div>
+        )
     }
 }
 
