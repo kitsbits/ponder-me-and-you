@@ -1,5 +1,6 @@
 import React from "react";
 import glamorous from "glamorous";
+import { memes } from "../../assets/pictures";
 
 export default function Item(props) {
     // STYLES \\
@@ -14,7 +15,7 @@ export default function Item(props) {
         <Container>
             <p>{props.item.title}</p>
             <h1>{props.item.product}</h1>
-            <img height="150px" width="150px" src={props.item.pictureUrl} alt="a picture" />
+            <img height="150px" width="150px" src={memes[props.item.pictureUrl]} alt={`Meme entitled: ${props.item.title}`} />
             <p>{props.item.selectedSize}</p>
             <h3>{props.item.price}</h3>
         </Container>

@@ -80,6 +80,9 @@ class MemeContainer extends React.Component {
 
                 case "canvas":
                     return "Canvas Print";
+
+                default:
+                    return "Product";
             }
         }
 
@@ -101,6 +104,8 @@ class MemeContainer extends React.Component {
                 return backgrounds.unframed;
             case "canvas":
                 return backgrounds.canvas;
+            default:
+                return backgrounds.framed;
         }
     }
 
@@ -156,7 +161,21 @@ class MemeContainer extends React.Component {
                         left: "40px",
                     }
                 };
-
+            default:
+                return {
+                    position: "absolute",
+                    left: "20px",
+                    height: "310px",
+                    width: "310px",
+                    [mediaQueries.medium]: {
+                        height: "245px",
+                        width: "245px",
+                    },
+                    [mediaQueries.small]: {
+                        height: "200px",
+                        width: "200px",
+                    }
+                };
         }
     }
 
