@@ -2,7 +2,7 @@ import React from "react";
 import ProductPage from "./ProductPage";
 import Thumbnail from "./Thumbnail";
 import Option from "./Option";
-
+import { backgrounds } from "../../../assets/pictures";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme, } from "../../redux/products";
@@ -93,13 +93,14 @@ class MemeContainer extends React.Component {
     }
 
     chooseBackground() {
+
         switch(this.props.match.params.product) {
             case "framed":
-                return "https://www.dropbox.com/s/jfrbw41y6pa3yi6/framed_background.jpg?raw=1";
+                return backgrounds.framed;
             case "unframed":
-                return "https://www.dropbox.com/s/xvgncdff7t5acfh/unframed_background.jpg?raw=1";
+                return backgrounds.unframed;
             case "canvas":
-                return "https://www.dropbox.com/s/ywpkvpsrctvptjt/canvas_background.jpg?raw=1";
+                return backgrounds.canvas;
         }
     }
 
@@ -160,7 +161,6 @@ class MemeContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.cart.inCart)
         return (
             <div>
                 <ProductPage

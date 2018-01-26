@@ -2,6 +2,7 @@ import React from "react";
 import glamorous from "glamorous";
 import { connect } from "react-redux";
 import { mediaQueries, colors } from "../../../styles/global";
+import { products } from "../../../assets/pictures";
 
 function ProductPage(props) {
     ///////// STYLES \\\\\\\\\\
@@ -132,7 +133,7 @@ function ProductPage(props) {
         <Container>
         <ProductContainer>
             <Title>{props.products.selectedMeme.ready ? props.products.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
-            <Background><Meme src={props.products.selectedMeme.ready ? props.products.selectedMeme.meme.products[props.params.product].pictureUrl : null}/></Background>
+            <Background><Meme src={props.products.selectedMeme.ready ?  products[props.params.product][props.products.selectedMeme.meme.pictureUrl] : null}/></Background>
             <DetailsContainer>
                 <BuyButton onClick={props.addToCart} type="button">ADD TO CART</BuyButton>
             <Price id="price">${props.state.price}</Price>

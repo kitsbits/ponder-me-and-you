@@ -1,6 +1,7 @@
 import React from "react";
 import glamorous from "glamorous";
 import { colors, mediaQueries } from "../../../styles/global";
+import { memes } from "../../../assets/pictures";
 
 export default function Thumbnail(props) {
     ///////// STYLES \\\\\\\\\\
@@ -13,16 +14,11 @@ export default function Thumbnail(props) {
             height: "300px",
             width: "300px",
         },
-        // [mediaQueries.small]: {
-        //     height: "300px",
-        //     width: "300px",
-        // }
-
     });
     ////////////////////////////////
 
     // Thumbnail called in Products/Container
     return (
-        <MemeThumbnail src={props.meme.pictureUrl}/>
+        <MemeThumbnail src={memes[props.meme.pictureUrl]}/>
     );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import glamorous from "glamorous";
 import { Link } from "react-router-dom";
 import { mediaQueries, colors } from "../../styles/global";
+import { memes } from "../../assets/pictures";
 
 export default function MemeComponent(props) {
     const sizing = {
@@ -114,7 +115,7 @@ export default function MemeComponent(props) {
     ////////////////////////////////
     return (
         <Card>
-            <Link to={`/prints/${props.meme._id}/framed`}><Meme src={props.meme.pictureUrl} alt={`Digital art entitled: ${props.meme.title}`}/></Link>
+            <Link to={`/prints/${props.meme._id}/framed`}><Meme src={memes[props.meme.pictureUrl]} alt={`Digital art entitled: ${props.meme.title}`}/></Link>
             <ClickContainer>
                 <BuyButton>BUY</BuyButton>
                 <ShareContainer>

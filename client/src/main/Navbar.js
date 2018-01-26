@@ -2,7 +2,7 @@ import React from "react";
 import glamorous from "glamorous";
 import { Link } from "react-router-dom";
 import { mediaQueries, colors } from "../styles/global";
-
+import { misc } from "../assets/pictures";
 export default function Navbar() {
     ///////// STYLES \\\\\\\\\\
     const Container = glamorous.div({
@@ -55,7 +55,7 @@ export default function Navbar() {
 
     return (
         <Container>
-            <Link to="/"><Logo src="https://www.dropbox.com/s/z9dvyed568m20a6/logo.png?raw=1"/></Link>
+            <Link to="/"><Logo src={misc.logo}/></Link>
             <LinkContainer>
                 <NavLink href="" target="blank">
                     <i className="fa fa-3x fa-instagram"></i>
