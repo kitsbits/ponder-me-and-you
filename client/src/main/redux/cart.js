@@ -39,6 +39,13 @@ export default function reducer(prevState = state, action) {
 
         case "REMOVE_ITEM":
             newCart = newCart.filter(item => item.id !== action.item.id);
+
+            if (newCart.length) {
+                localStorage.setItem("cart", JSON.stringify(newCart));
+            } else {
+                localStorage.removeItem("cart");
+            }
+        
             return {
                 ...prevState,
                 inCart: newCart

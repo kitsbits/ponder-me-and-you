@@ -19,7 +19,6 @@ class CartContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props.cart);
         return this.mapCart();
     }
 }

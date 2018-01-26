@@ -67,13 +67,13 @@ function ProductPage(props) {
     });
 
     const Price = glamorous.h1({
-        color: colors.darkGreen,
-    })
+        color: colors.grey,
+    });
 
     const SelectContainer = glamorous.div({
         position: "relative",
         height: "65px",
-        width: "40%",
+        width: "30%",
         border: `1px solid ${colors.grey}`,
     });
 
@@ -99,6 +99,17 @@ function ProductPage(props) {
         top: "50%",
         transform: "translateY(-50%)",
     }
+
+    const Quantity = glamorous.input({
+        height: "65px",
+        backgroundColor: "transparent",
+        outline: "none",
+        fontSize: "1.2em",
+        border: "none",
+        width: "2.4em",
+        border: `0.5px solid ${colors.grey}`,
+        textAlign: "center",
+    });
 
     const MoreContainer = glamorous.div({
         marginTop: "15px",
@@ -136,13 +147,14 @@ function ProductPage(props) {
             <Background><Meme src={props.products.selectedMeme.ready ?  products[props.params.product][props.products.selectedMeme.meme.pictureUrl] : null}/></Background>
             <DetailsContainer>
                 <BuyButton onClick={props.addToCart} type="button">ADD TO CART</BuyButton>
-            <Price id="price">${props.state.price}</Price>
+                <Price id="price">${props.state.price}</Price>
                 <SelectContainer>
                     <SelectSize onChange={props.handleSelect} id="sizes" value={props.state.selectedSize}>
                         {props.mapSizes()}
                     </SelectSize>
                     <i className="fa fa-lg fa-chevron-down" style={chevron}/>
                 </SelectContainer>
+                <Quantity id="quantity" type="number" defaultValue="1"/>
             </DetailsContainer>
         </ProductContainer>
         <MoreContainer>

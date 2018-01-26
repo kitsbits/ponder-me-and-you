@@ -90,7 +90,8 @@ class MemeContainer extends React.Component {
             ...this.state,
             title: meme.title,
             pictureUrl: meme.pictureUrl,
-            product: whichProduct()
+            product: whichProduct(),
+            quantity: Number(document.getElementById("quantity").value),
         };
         this.props.addItem(item);
     }
