@@ -18,6 +18,7 @@ export default function Item(props) {
             <img height="150px" width="150px" src={memes[props.item.pictureUrl]} alt={`Meme entitled: ${props.item.title}`} />
             <p>{props.item.selectedSize}</p>
             <h3>{props.item.price}</h3>
+            <button onClick={(e) => props.remove(props.item)} type="button">BUTTON</button>
         </Container>
     );
 }
