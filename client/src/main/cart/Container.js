@@ -5,6 +5,7 @@ import glamorous from "glamorous";
 
 import Item from "./Item";
 import NothingInCart from "./NothingInCart";
+import CartTotal from "./CartTotal";
 
 class CartContainer extends React.Component {
     constructor() {
@@ -32,7 +33,7 @@ class CartContainer extends React.Component {
         return (
             <div>
                 {this.mapCart()}
-                <h3 style={{textAlign: "right"}}>{this.props.cart.total > 0 ? "stuff" : <NothingInCart/> }</h3>
+                {this.props.cart.total > 0 ? <CartTotal total={this.props.cart.total}/> : <NothingInCart/> }
             </div>
         )
     }

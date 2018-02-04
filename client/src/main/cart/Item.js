@@ -21,11 +21,6 @@ export default function Item(props) {
 
     const Thumbnail = glamorous.img({
         width: "40%",
-        // height: "80px",
-        [mediaQueries.small]: {
-            // width: "60px",
-            // height: "60px",
-        },
 
     });
 
