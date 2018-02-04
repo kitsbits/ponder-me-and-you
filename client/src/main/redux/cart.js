@@ -15,6 +15,12 @@ export const removeItem = (item) => {
     }
 }
 
+export const computeTotal = () => {
+    return {
+        type: "COMPUTE_TOTAL"
+    }
+}
+
 /////////////////////////////
 
 // REDUCER \\
@@ -70,6 +76,17 @@ export default function reducer(prevState = state, action) {
             return {
                 ...prevState,
                 inCart: newCart,
+                total: newTotal
+            };
+
+        case "COMPUTE_TOTAL":
+            newTotal = prevState.inCart.reduce((totalPrice, item) => {
+                totalPrice += item.price;
+                return +(totalPrice).toFixed(2);
+            }, 0);
+            
+            return {
+                ...prevState,
                 total: newTotal
             };
 

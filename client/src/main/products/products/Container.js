@@ -5,7 +5,7 @@ import Option from "./Option";
 import { backgrounds } from "../../../assets/pictures";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme, } from "../../redux/products";
+import { getMemes, selectMeme, getUrlParams, resetUrlParams, resetSelectedMeme } from "../../redux/products";
 import { addItem } from "../../redux/cart";
 import { mediaQueries } from "../../../styles/global";
 
@@ -68,32 +68,44 @@ class MemeContainer extends React.Component {
         });
     }
 
-    addToCart() {
-        const meme = this.props.products.selectedMeme.meme;
-        const whichProduct = () => {
-            switch(this.props.match.params.product) {
-                case "framed":
-                    return "Matte Poster (Framed)";
-
-                case "unframed":
-                    return "Matte Poster (Unframed)";
-
-                case "canvas":
-                    return "Canvas Print";
-
-                default:
-                    return "Product";
-            }
+    handleQuantityChange(event) {
+        if (event.target.value >= 1) {
+            document.getElementById("quantity-error").style.visibility = "hidden";
+        } else {
+            document.getElementById("quantity-error").style.visibility = "inherit";
         }
+    }
 
-        const item = {
-            ...this.state,
-            title: meme.title,
-            pictureUrl: meme.pictureUrl,
-            product: whichProduct(),
-            quantity: Number(document.getElementById("quantity").value),
-        };
-        this.props.addItem(item);
+    addToCart() {
+        if (Number(document.getElementById("quantity").value) >= 1) {
+            const meme = this.props.products.selectedMeme.meme;
+            const whichProduct = () => {
+                switch(this.props.match.params.product) {
+                    case "framed":
+                        return "Matte Poster (Framed)";
+
+                    case "unframed":
+                        return "Matte Poster (Unframed)";
+
+                    case "canvas":
+                        return "Canvas Print";
+
+                    default:
+                        return "Product";
+                }
+            }
+
+            const item = {
+                ...this.state,
+                title: meme.title,
+                pictureUrl: meme.pictureUrl,
+                product: whichProduct(),
+                quantity: Number(document.getElementById("quantity").value),
+            };
+            this.props.addItem(item);
+        } else {
+            document.getElementById("quantity-error").style.visibility = "inherit";
+        }
     }
 
     chooseBackground() {
@@ -192,6 +204,7 @@ class MemeContainer extends React.Component {
                     handleSelect={this.handleSelect}
                     addToCart={this.addToCart}
                     state={this.state}
+                    handleQuantityChange={this.handleQuantityChange}
                 />
             </div>
         )

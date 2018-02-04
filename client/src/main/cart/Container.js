@@ -1,12 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addItem, removeItem } from "../redux/cart";
+import { addItem, removeItem, computeTotal } from "../redux/cart";
+import glamorous from "glamorous";
+
 import Item from "./Item";
+import NothingInCart from "./NothingInCart";
 
 class CartContainer extends React.Component {
     constructor() {
         super();
         this.removeItem = this.removeItem.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.computeTotal();
     }
 
     mapCart() {
@@ -25,7 +32,7 @@ class CartContainer extends React.Component {
         return (
             <div>
                 {this.mapCart()}
-                <h1>${this.props.cart.total}</h1>
+                <h3 style={{textAlign: "right"}}>{this.props.cart.total > 0 ? "stuff" : <NothingInCart/> }</h3>
             </div>
         )
     }
@@ -33,4 +40,4 @@ class CartContainer extends React.Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { addItem, removeItem })(CartContainer);
+export default connect(mapStateToProps, { addItem, removeItem, computeTotal })(CartContainer);

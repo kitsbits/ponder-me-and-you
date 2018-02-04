@@ -50,7 +50,6 @@ function ProductPage(props) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        marginTop: "35px",
         width: "100%",
         [mediaQueries.medium]: {
             marginBottom: "130px",
@@ -138,6 +137,13 @@ function ProductPage(props) {
         },
     });
 
+    const ErrorMessage = glamorous.h4({
+        marginTop: "10px",
+        marginBottom: "0",
+        color: "red",
+        visibility: "hidden",
+    });
+
     const Meme = glamorous.img(props.memeStyles());
     ////////////////////////////////
     return (
@@ -145,6 +151,7 @@ function ProductPage(props) {
         <ProductContainer>
             <Title>{props.products.selectedMeme.ready ? props.products.selectedMeme.meme.title.toUpperCase() : "LOADING..."}</Title>
             <Background><Meme src={props.products.selectedMeme.ready ?  products[props.params.product][props.products.selectedMeme.meme.pictureUrl] : null}/></Background>
+            <ErrorMessage id="quantity-error">Please enter a quantity of 1 or more</ErrorMessage>
             <DetailsContainer>
                 <BuyButton onClick={props.addToCart} type="button">ADD TO CART</BuyButton>
                 <Price id="price">${props.state.price}</Price>
@@ -154,7 +161,7 @@ function ProductPage(props) {
                     </SelectSize>
                     <i className="fa fa-lg fa-chevron-down" style={chevron}/>
                 </SelectContainer>
-                <Quantity id="quantity" type="number" defaultValue="1"/>
+                <Quantity id="quantity" onChange={props.handleQuantityChange} type="number" defaultValue="1" min="1"/>
             </DetailsContainer>
         </ProductContainer>
         <MoreContainer>
