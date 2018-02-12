@@ -62,4 +62,5 @@ export const backgrounds = {
 
 export const misc = {
     logo: require("./pictures/logo.png"),
+    cart: require("./pictures/cart.png"),
 }

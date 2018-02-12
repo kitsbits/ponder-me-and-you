@@ -13,7 +13,7 @@ export default function Navbar() {
         flexWrap: "wrap",
         height: "75px",
         backgroundColor: colors.green,
-        width: "100%",
+        width: "100vw",
         margin: "0 auto 100px auto",
         transition: "all 0.2s ease-in-out",
         zIndex: "2",
@@ -41,14 +41,31 @@ export default function Navbar() {
     const LinkContainer = glamorous.div({
         display: "flex",
         justifyContent: "space-around",
-        width: "25%",
+        alignItems: "center",
+        width: "40%",
+        [mediaQueries.medium]: {
+            width: "100%",
+        }
+    });
+
+    const CartText = glamorous.img({
+        height: "auto",
+        width: "150px",
+        transform: "translateY(80%)",
+        [mediaQueries.medium]: {
+            transform: "translateY(0)",
+            width: "120px",
+        },
+        [mediaQueries.small]: {
+            width: "90px",
+        },
     });
 
     const NavLink = glamorous.a({
         color: colors.grey,
-        margin: "auto 10px",
+        // margin: "auto 10px",
         [mediaQueries.medium]: {
-            margin: "auto 50px",
+            // margin: "auto 20px",
         }
     });
     ////////////////////////////////////
@@ -63,7 +80,7 @@ export default function Navbar() {
                 <NavLink href="" target="blank">
                     <i className="fa fa-3x fa-facebook-official"></i>
                 </NavLink>
-                <Link to="/cart">CART</Link>
+                <Link to="/cart"><CartText src={misc.cart}/></Link>
             </LinkContainer>
         </Container>
     )

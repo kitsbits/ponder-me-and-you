@@ -7,6 +7,15 @@ export default function CartTotal(props) {
         textAlign: "right",
         borderTop: `2px dotted ${colors.grey}`,
         paddingTop: "22px",
-    })
-    return (<Total>Total: ${props.total}</Total>)
+    });
+
+    const CheckoutButton = glamorous.button({
+
+    });
+    return (
+        <div>
+            <Total>Total: ${props.total}</Total>
+            <CheckoutButton onClick={props.handleCheckout} type="button">Checkout</CheckoutButton>
+        </div>
+    )
 }

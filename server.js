@@ -14,6 +14,7 @@ app.use(cors());
 app.use("/memes", require("./routes/memes"));
 app.use("/admin", require("./routes/admin"));
 app.use("/auth", require("./routes/auth"));
+app.use("/checkout", require("./routes/checkout"));
 
 mongoose.connect("mongodb://localhost/ponder", {keepAlive: true, reconnectTries: Number.MAX_VALUE, useMongoClient: true}, (err) => {
     if (err) throw err;
