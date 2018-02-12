@@ -9,8 +9,8 @@ export default function Item(props) {
         display: "flex",
         justifyContent: "space-around",
         alignItems: "flex-start",
-        width: "550px",
-        minHeight: "250px",
+        marginBottom: "55px",
+        marginRight: "15%",
         [mediaQueries.medium]: {
             width: "400px",
         },
@@ -20,7 +20,10 @@ export default function Item(props) {
     });
 
     const Thumbnail = glamorous.img({
-        width: "40%",
+        width: "50%",
+        [mediaQueries.medium]: {
+            width: "40%",
+        },
 
     });
 
@@ -33,7 +36,7 @@ export default function Item(props) {
     const PghText = glamorous.p({
         margin: "0 0 20px 0",
         textAlign: "center",
-        fontSize: "1.2em",
+        fontSize: "1em",
         [mediaQueries.medium]: {
             fontSize: "1em",
         },

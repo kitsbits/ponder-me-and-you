@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addItem, removeItem, computeTotal } from "../redux/cart";
 import glamorous from "glamorous";
-import axios from "axios";
+import { colors, mediaQueries } from "../../styles/global";
 
 import Item from "./Item";
 import NothingInCart from "./NothingInCart";
@@ -12,7 +12,6 @@ class CartContainer extends React.Component {
     constructor() {
         super();
         this.removeItem = this.removeItem.bind(this);
-        this.handleCheckout = this.handleCheckout.bind(this);
     }
 
     componentDidMount() {
@@ -31,26 +30,42 @@ class CartContainer extends React.Component {
         this.props.removeItem(item);
     }
 
-    handleCheckout() {
-        axios
-        .get("http://localhost:6100/checkout")
-        .then(response => {
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
-
     render() {
+        const YourCart = glamorous.h2({
+            position: "fixed",
+            top: "100",
+            [mediaQueries.medium]: {
+                position: "relative",
+                top: "auto",
+                marginBottom: "35px",
+                paddingBottom: "15px",
+                borderBottom: `1px dotted ${colors.grey}`,
+            }
+        });
+
+        const CartDetailsContainer = glamorous.div({
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "65vw",
+            [mediaQueries.medium]: {
+                flexDirection: "column",
+            }
+        });
+
         return (
             <div>
-                {this.mapCart()}
-                {this.props.cart.total > 0 ?
-                    <CartTotal
-                        total={this.props.cart.total}
-                        handleCheckout={this.handleCheckout}/>
-                :
-                    <NothingInCart/> }
+                <YourCart>Your Cart</YourCart>
+                <CartDetailsContainer>
+                    <div>
+                        {this.mapCart()}
+                    </div>
+                    {this.props.cart.total > 0 ?
+                        <CartTotal
+                            total={this.props.cart.total}/>
+                    :
+                        <NothingInCart/> }
+                </CartDetailsContainer>
             </div>
         )
     }
